@@ -36,7 +36,7 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-          cmod 600 ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H 51.89.230.120 >> ~/.ssh/known_hosts
           ssh ubuntu@51.89.230.120 "mkdir -p /home/ubuntu/temp"
           scp -r frontend/dist/* ubuntu@51.89.230.120:/home/ubuntu/temp/
