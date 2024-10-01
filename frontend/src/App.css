@@ -29,7 +29,7 @@ h1 {
 .add-book-container, .delete-book-container, .book-list-container {
   border: 1px solid #9ca3af;
   padding: 10px;
-  background-color: #fed7aa;
+  background-color: #e1feaa;
 }
 
 input {
