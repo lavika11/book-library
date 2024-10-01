@@ -7,16 +7,17 @@ const { error } = require("console");
 
 const app = express();
 const port = process.env.PORT || 3000;
-
+app.use(cors());
+console.info(process.env.REPLIT_DB_URL);
 const db = new Database(process.env.REPLIT_DB_URL);
 //console.log(process.env.REPLIT_DB_URL);
-app.use(cors());
+
 app.use(express.json());
 
 // Function to generate id
 const getNextId = async () => {
   const keysObj = await db.list();
-  //console.log("my database: ", keysObj.value);
+  console.log("my database: ", keysObj.value);
   const keys = (keysObj.value || []).map(Number).filter((key) => !isNaN(key));
   return keys.length > 0 ? String(Math.max(...keys) + 1) : 1;
   //console.log("keysObj: ",keysObj)
@@ -48,6 +49,7 @@ app.get("/api/books", (req, res) => {
   db.list()
     .then((keysObj) => {
       console.log(keysObj);
+      console.log("Результат db.list():", JSON.stringify(keysObj, null, 2));
       //   const keys = keysObj.value || [];
       const keys = Array.isArray(keysObj.value)
         ? keysObj.value
