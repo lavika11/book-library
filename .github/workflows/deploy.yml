@@ -33,7 +33,7 @@ jobs:
       - name: Deploy to OVH Server
         env:
           SSH_PRIVATE_KEY: ${{secrets.OVH_SSH_KEY}}
-        run:
+        run: |
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           cmod 600 ~/.ssh/id_rsa
